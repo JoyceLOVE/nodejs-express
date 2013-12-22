@@ -10,7 +10,9 @@ var http = require('http');
 var path = require('path');
 var api = require('./routes/api');
 var joyce = require('./routes/joyce');
+var card = require('./routes/card');
 var app = express();
+
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -31,8 +33,14 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get('/api', api.index);
+app.get('/1/api', api.index);
 app.get('/joyce', joyce.index);
+
+// REST API
+app.get('/1/card/:name', card.read);
+app.post('/1/card/:name', card.create);
+app.put('/1/card/:name', card.update);
+app.delete('/1/card/:name', card.delete);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
