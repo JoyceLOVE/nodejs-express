@@ -37,8 +37,8 @@ app.get('/1/api', api.index);
 app.get('/joyce', joyce.index);
 
 // REST API
-app.get('/1/card/:nickname', card.read);
-app.post('/1/card/:nickname', card.create);
+app.get('/1/card/:name', card.read); //name:群組
+app.post('/1/card/:nickname', card.create); //nickname: 其中一人
 app.put('/1/card/:nickname', card.update);
 app.delete('/1/card/:nickname', card.delete);
 
