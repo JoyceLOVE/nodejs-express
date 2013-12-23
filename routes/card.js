@@ -10,7 +10,7 @@ exports.create = function(req, res){
  	console.log(">>>>>>>>> creat");
  	console.log(req.query);
 
- 	person.name = req.query.name;
+ 	person.nickname = req.query.nickname;
  	person.tel = req.query.tel;
 
  	vcard.push(person); //把 person 的資料存進 vcard陣列裡
@@ -30,24 +30,39 @@ exports.read = function(req, res){
 };
 
 
-
-
-
 exports.update = function(req, res){
  	console.log(">>>>>>>>> update");
- 	console.log(req.query);
+ 	
+ 	var nickname = req.params.nickname;
 
- 	person.name = req.query.name;
- 	person.tel = req.query.tel;
+ 	vcard.forEach(function (entry){
+ 		if (entry.nickname == nickname) {
 
+ 			console.log('found!');
+
+ 			entry.name = req.query.name;
+ 			entry.tel = req.query.tel;
+ 		}
+ 	});
     res.end(); 
    
 };
 
 
 exports.delete = function(req, res){
- 	console.log(">>>>>>>>> delete");
+	console.log(">>>>>>>>> delete");
 
+	var nickname = req.params.nickname;
+
+	var newvcard = [];
+	vcard.forEach(function (entry) {
+		
+		if (entry.nickname !== nickname){
+			newvcard.push(entry);
+		}
+	});
+ 	
+ 	vcard = newvcard;
     res.end();
    
 };

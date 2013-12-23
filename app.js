@@ -37,10 +37,10 @@ app.get('/1/api', api.index);
 app.get('/joyce', joyce.index);
 
 // REST API
-app.get('/1/card/:name', card.read);
-app.post('/1/card/:name', card.create);
-app.put('/1/card/:name', card.update);
-app.delete('/1/card/:name', card.delete);
+app.get('/1/card/:nickname', card.read);
+app.post('/1/card/:nickname', card.create);
+app.put('/1/card/:nickname', card.update);
+app.delete('/1/card/:nickname', card.delete);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
