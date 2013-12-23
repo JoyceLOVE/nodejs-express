@@ -1,17 +1,20 @@
 var vcard = [];
 
-
-
 exports.create = function(req, res){
+
 	var person = {
-	name: "",//name is a key
-	tel: "" //tel is a key
+	id: "", //開設一個 帳號
+	name:"", //使用者名字 >> key
+	tel: "" //使用者電話資料 >> key
 };
+	
  	console.log(">>>>>>>>> creat");
  	console.log(req.query);
 
- 	person.nickname = req.query.nickname;
+ 	person.id = req.params.id;
+ 	person.name = req.query.name;
  	person.tel = req.query.tel;
+ 	
 
  	vcard.push(person); //把 person 的資料存進 vcard陣列裡
 
@@ -33,10 +36,10 @@ exports.read = function(req, res){
 exports.update = function(req, res){
  	console.log(">>>>>>>>> update");
  	
- 	var nickname = req.params.nickname;
+ 	var id = req.params.id;
 
  	vcard.forEach(function (entry){
- 		if (entry.nickname == nickname) {
+ 		if (entry.id == id) {
 
  			console.log('found!');
 
@@ -52,12 +55,12 @@ exports.update = function(req, res){
 exports.delete = function(req, res){
 	console.log(">>>>>>>>> delete");
 
-	var nickname = req.params.nickname;
+	var id = req.params.id;
 
 	var newvcard = [];
 	vcard.forEach(function (entry) {
 		
-		if (entry.nickname !== nickname){
+		if (entry.id !== id){
 			newvcard.push(entry);
 		}
 	});
